@@ -8,16 +8,20 @@
 
 if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
   MODE_INDICATOR="%{$fg_bold[red]%}❮%{$reset_color%}%{$fg[red]%}❮❮%{$reset_color%}"
-  local return_status="%{$fg[red]%}%(?..⏎)%{$reset_color%}"
+  local return_status="%{$fg[red]%}%(?..✘)%{$reset_color%}"
+  # zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{1}❯%F{3}❯%F{2}❯%f%b'
   
-  PROMPT='%{$fg[blue]%}%~$(git_prompt_info) %(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%}❯)%{$reset_color%} '
+  # PROMPT='%{$fg[blue]%}%~$(git_prompt_info) %(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%}❯)%{$reset_color%} '
+  PROMPT='%{$fg[blue]%}%~ %(!.%{$fg_bold[red]%}#.%{$fg_bold[red]%}❯%{$fg_bold[yellow]%}❯%{$fg_bold[green]%}❯)%{$reset_color%} '
 
-  ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[yellow]%}["
+  ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg_bold[black]%}["
   ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
   ZSH_THEME_GIT_PROMPT_DIRTY=""
   ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-  RPROMPT='${return_status}$(git_prompt_status)%{$reset_color%} [%{$fg[green]%}%*%{$reset_color%}]'
+  # RPROMPT='${return_status}$(git_prompt_status)%{$reset_color%} [%{$fg[green]%}%*%{$reset_color%}]'
+  # RPROMPT='${return_status}$(git_prompt_status)%{$reset_color%} '
+  RPROMPT='${return_status}$(git_prompt_info)%{$reset_color%} $(git_prompt_status)%{$reset_color%} '
 
   ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
   ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
